@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Online Tic Tac Toe Game Web Application">
+    <link rel="icon" href="Files/Images/icon.jpg">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"/>
+    <link rel="stylesheet" href="Files/anime-styles.css">
+    <link rel="stylesheet" href="Files/styles.css">
+    <script defer src="Files/script.js"></script>
+    <title>TIC TAC TOE GAME</title>
+</head>
+<body>
+    <main> 
+        
+        <section id="intro"> 
+            <button id="start_page_btn">START THE GAME</button>
+            <header>
+                <h1>TIC TAC TOE</h1>
+                <h1>GAME</h1>
+            </header>
+            <figure class="blur">
+                <img src="Files/Images/intro_eyes1.jpg" alt="An image introducing the game">
+            </figure>
+            <figure class="blur">
+                <img src="Files/Images/intro_eyes2.jpg" alt="An image introducing the game">
+            </figure> 
+            <audio src="Files/Music/click.mp3"></audio>
+            <audio loop src="Files/Music/Mix 1.mp3"></audio>
+            <audio src="Files/Music/typing.mp3"></audio>
+            <audio src="Files/Music/y2mate.com - BOOM sound effect.mp3"></audio>
+        </section> 
+        <section id="input_collection">
+            <form>
+                <h2>Fill the inputs field to continue</h2>
+                <fieldset>
+                    <label for="firstUser">First Player's Name: </label>
+                    <input type="text" name="firstUserName" id="firstUserName" maxlength="7" required>
+                    <p style="color: red;" class="hide" id="warning_p">Insert the name please, with maximum length of 7 characters.</p>
+                </fieldset>
+                <fieldset id="player_2" class="hide">
+                    <label for="secondUser">Second Player's Name: </label>
+                    <input type="text" name="secondUserName" id="secondUserName" maxlength="7">
+                    <p style="color: red;" class="hide" id="warning_p2">Insert the name please, with maximum length of 7 characters.</p>
+                </fieldset>
+                <p>By default you are playing with the computer,<br>
+                   Click the 'Partner' button if you have a partner to play with.</p>
+                <button id="partner_btn">Partner</button>
+                <div>
+                    <input type="submit" name="game-starts" value="Start Game" class="button_inputs" id="game_starting_btn">
+                    <input type="reset" name="inputs-clear" value="Clear All" class="button_inputs">
+                    <select id="level_select">
+                        <option value="Hard">Hard</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Easy">Easy</option>
+                    </select>
+                </div>
+            </form>
+            <div id="hints_to_win_parent">
+                <h1><ins>Patterns For This Game To Win</ins></h1>
+                <div id="hints_to_win">
+                </div>
+            </div>
+            <button class="none" id="back_to_game_btn" style="margin-top: 2rem;">Back To The Game</button>
+            <div id="anchor_container">
+                <a href="https://github.com/Ben22-Developer" target="_blank">Coded and Designed By SHIMWA Benjamin <i class="fab fa-github"></i> </a>
+            </div>
+        </section> 
+        <section id="game_playing" class="none">
+            <h1>TIC TAC TOE</h1>
+            <h1>GAME</h1>
+            <div id="players">
+                <p><span id="player_1_name"></span><span id="player_1_points">Rounds: 0</span><span id="player_1_symbol"></span><span class="trophy">Champion</span></p>
+                <p><span id="player_2_name"></span><span id="player_2_points">Rounds: 0</span><span id="player_2_symbol"></span><span class="trophy">Champion</span></p>
+            </div>
+            <form style="display: flex; flex-direction: column; align-items: center; gap:1rem;" id="select-level-form">
+                <select id="select-change-level">
+                    <option value="Hard">Hard</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Easy">Easy</option>
+                </select>
+                <input type="submit" value="Click Me To Apply The Changed Level" id="level-submit-button">
+            </form>
+            <p id="show-game-round-and-player"><span id="game_round"></span><br><span id="player_playing"></span></p>
+            <div id="game_board"></div>
+            <div id="game_control_btn">
+                <button>Restart The Round</button>
+                <button>Back To The Hints</button>
+            </div>
+            <div id="anchor_container">
+                <a href="https://github.com/Ben22-Developer" target="_blank">Coded and Designed By SHIMWA Benjamin</a>
+            </div>
+        </section>
+        <section id="round_won" class="round_won_show round_won_hide">
+            <p></p>
+            <div id="continue_or_stop_rounds">
+                <button>Continue To Play</button>
+                <button>Restart The Game</button>
+            </div>
+        </section>
+        <section id="game_settings_section">
+            <div id="navbar">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div id="game_settings" class="hide-nav">
+                <ul id="settingsList">
+                    <li class="a_setting">Sound ON</li>
+                    <li class="a_setting">Restart The Game</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

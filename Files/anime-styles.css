@@ -1,0 +1,166 @@
+/*Intro animation*/
+#intro {
+    animation: intro 16000ms 1 forwards paused;
+    figure:first-of-type {
+        animation: first-eyes 10000ms 1 ease-in paused;
+    }
+    figure:last-of-type {
+        animation: second-eyes 10000ms 1 ease-in paused;
+    }
+    header {
+        animation: header 10000ms ease-out paused;
+        h1:first-of-type {
+            animation: first-h1 15000ms steps(25) paused;
+        }
+        h1:last-of-type {
+            animation: second-h1 15000ms steps(20) paused;
+        }
+        h1:first-of-type::before,h1:last-of-type::before {
+            content: '';
+            position: absolute;
+            height: 100%;
+            width: .5rem;
+            top:0;
+            right: 0;
+            background-color: transparent;
+        }
+        h1:first-of-type::before {
+            animation:first-h1-before 700ms 4;
+        }
+        h1:last-of-type::before {
+            animation: last-h1-before 700ms 3;
+        }
+    }
+}
+
+#input_collection {
+    animation: input-collection 18000ms 1 forwards paused;
+}
+
+@keyframes input-collection {
+    0%,90% {
+        display: none;
+        opacity: 0;
+    }
+    90%,91% {
+        display: none;
+        opacity: 0;
+    }
+    99%,100% {
+        display: block;
+        opacity: 1; 
+    }
+}
+
+#game_settings_section {
+    animation: game_settings_section 18000ms 1 forwards paused;
+}
+@keyframes game_settings_section {
+    0%,90% {
+        display: none;
+        opacity: 0;
+    }
+    90%,91% {
+        display: none;
+        opacity: 0;
+    }
+    99%,100% {
+        display: block;
+        opacity: 1; 
+    }
+}
+
+
+@keyframes intro {
+    0%,95% {
+        display: block;
+        scale: 1;
+    }
+    99.9%,100% {
+        display: none;
+        scale: 0;
+    }
+}
+
+@keyframes first-eyes {
+    0%,25% {
+       display: none;
+       transform: translateX(400%);
+       filter: blur(0);
+    }
+    25%,65% {
+        display: block;
+        transform: translateX(0);
+        filter: blur(0);
+    }
+    85%,100% {
+        display: block;
+        transform: translateX(0);
+        filter: blur(.3rem);
+    }
+}
+
+@keyframes second-eyes {
+    0%,50% {
+        display: none;
+        transform: translateX(-400%);
+        filter: blur(0);
+    }
+    50%,65% {
+        display: block;
+        transform: translateX(0);
+        filter: blur(0);
+    }
+    85%,100% {
+        display: block;
+        transform: translateX(0);
+        filter: blur(.3rem);
+    }
+}
+
+@keyframes header {
+    0%,65% {
+        border-radius: 50%;
+        opacity:0;
+        background-color: transparent;
+    }
+    85%,100% {
+        border-radius: 3rem;
+        opacity: 1;
+        background-color: black;
+    }
+}
+
+@keyframes first-h1 {
+    0%,65% {
+        display: none;
+        width: 0ch;
+    }
+    80%,100% {
+        display: block;
+        width: 8.7ch;
+    }
+}
+
+@keyframes first-h1-before {
+    to {
+        background-color: rgb(3, 209, 3);
+    }
+}
+@keyframes last-h1-before {
+    to {
+        background-color: red;
+    }
+}
+
+@keyframes second-h1 {
+    0%,80% {
+        display: none;
+        width: 0ch;
+    }
+    95%,100% {
+        display: block;
+        width: 5ch;
+    }
+}
+
