@@ -44,6 +44,7 @@ main {
     flex-direction: column;
     justify-content: center;
 }
+
 .no_select {
     filter: blur(.1rem);
     pointer-events: none !important;
@@ -190,6 +191,10 @@ button:active,.button_inputs:active,select:hover,#level-submit-button:hover {
     font-weight: bold;
     text-align: center;
     padding: 1rem 0 2rem 0;
+}
+
+#game_playing, #input_collection {
+    height: 100%;
 }
 
 #game_playing {
@@ -415,10 +420,11 @@ button:active,.button_inputs:active,select:hover,#level-submit-button:hover {
         font-size: 1.5rem !important;
     }
 }
-
-@media (aspect-ratio > 0.5) and (width > 675px) {
+/*
+@media (aspect-ratio > 0.4) {
     
     #game_settings_section {
-        top:25% !important;
+        top:15% !important;
     }   
-}
+}*/
+

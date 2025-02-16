@@ -101,7 +101,7 @@ const gamePlayingFunction =(() => {
             document.getElementById('game_board').style.pointerEvents = 'none';
             let user_win;
             user1_choice_check = not_repeat_taken_keys(user_choice);
-            if (user1_choice_check && taken_keys.length < 8 && user_choice) {
+            if (user1_choice_check && taken_keys.length <= 8 && user_choice) {
                 user_win =  game_record_fn(user_choice,game_object.player_1_name);
             }
             //to check if the user has made a win
