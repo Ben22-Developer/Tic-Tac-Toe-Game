@@ -92,16 +92,16 @@ const gamePlayingFunction =(() => {
     const game_controller_fn = (user_choice) => {
 
         //Global Variables in game_controller_fn
-        let user1_choice_check,no_win;
+        let user1_choice_check;
         user1_choice_check = true;
-        no_win = true;
 
         //when user 1 is playing condition
         if (taken_keys.length < 8 && taken_keys.length && !user2_plays) {
             document.getElementById('game_board').style.pointerEvents = 'none';
             let user_win;
             user1_choice_check = not_repeat_taken_keys(user_choice);
-            if (user1_choice_check && taken_keys.length <= 8 && user_choice) {
+            if (user1_choice_check && user_choice) {
+                taken_keys.push(user_choice);
                 user_win =  game_record_fn(user_choice,game_object.player_1_name);
             }
             //to check if the user has made a win
@@ -111,7 +111,6 @@ const gamePlayingFunction =(() => {
                     user1_choice_check = false;
                     setTimeout(() => {
                         game_end(game_object.player_1_name);
-                        no_win = false;
                         document.getElementById('game_board').style.pointerEvents = 'all';
                     },1500)
                     return 0
@@ -121,6 +120,7 @@ const gamePlayingFunction =(() => {
         }
         else if (!taken_keys.length && !user2_plays) {
             game_record_fn(user_choice,game_object.player_1_name);
+            taken_keys.push(user_choice);
         }
 
         if (!comp_plays && taken_keys.length < 8 && !user2_plays) {
@@ -131,6 +131,7 @@ const gamePlayingFunction =(() => {
 
         //when another user is playing
         if(user2_plays && user1_choice_check && taken_keys.length < 8 && user_choice) {
+            taken_keys.push(user_choice);
             const user2_win = game_record_fn(user_choice,game_object.player_2_name);
                 //to check if user2 has made a win
                 if (game_object.player_2.length >= 3) {
@@ -138,11 +139,13 @@ const gamePlayingFunction =(() => {
                         document.querySelector('#game_board').setAttribute('class','game_board_off');
                         setTimeout(() => {
                             game_end(game_object.player_2_name);
-                            no_win = false;
+                        
                         },1500)
                     }
                 }
-                //document.getElementById('game_board').style.pointerEvents = 'all';
+                if (taken_keys.length === 8) {
+                    last_play_possibility_or_draw();
+                }
                 user2_plays = false;
                 document.getElementById('player_playing').innerText = `Player: ${game_object.player_1_name} (${game_object.player_1_symbol})`;
                 return 0
@@ -153,6 +156,7 @@ const gamePlayingFunction =(() => {
             document.getElementById('player_playing').innerText = `Player: ${game_object.player_2_name} (${game_object.player_2_symbol})`;
             document.getElementById('game_board').style.pointerEvents = 'none';
             const comp_choice = comp_choice_fn();
+            taken_keys.push(comp_choice);
             setTimeout(() => {
                 const comp_win = game_record_fn(comp_choice,game_object.player_2_name);
                 //to check if the computer has made a win
@@ -161,13 +165,16 @@ const gamePlayingFunction =(() => {
                         document.querySelector('#game_board').setAttribute('class','game_board_off');
                         setTimeout(()=> {
                             game_end(game_object.player_2_name);
-                            no_win = false;
+                        
                           },1500)
                     }
                 }
                 document.getElementById('game_board').style.pointerEvents = 'all';   
                 document.getElementById('player_playing').innerText = `Player: ${game_object.player_1_name} (${game_object.player_1_symbol})`;
             },1000)
+            if (taken_keys.length === 8) {
+                last_play_possibility_or_draw();
+            }
             return 0
         }
 
@@ -177,28 +184,30 @@ const gamePlayingFunction =(() => {
             //to check if the user has made a win
             if (user_win) {
                 document.querySelector('#game_board').setAttribute('class','game_board_off');
-                no_win = false;
+            
                 setTimeout(() => {
                     document.querySelector('#game_board').setAttribute('class','game_board_off');
                     game_end(game_object.player_1_name);
                 },1500)
             }
-        }
+        }    
+        return 0
+    }
+
+    const last_play_possibility_or_draw = () => {
+        const possibility = comp_medium_hard_level_fn (game_object.player_1);
         //draw situation
-        if (no_win && taken_keys.length === 9) {
-            console.log('in draw')
+        if (!possibility) {
             document.querySelector('#game_board').setAttribute('class','game_board_off');
             setTimeout (() => {
                 game_end();
             },1500)
         }
-        return 0
     }
 
     const game_record_fn = (choice,who_plays) => {
         let winner;
         mark_dom_game_board_taken_index(choice,who_plays);
-        taken_keys.push(choice);
         if (who_plays === game_object.player_1_name) {
             game_object.player_1.push(choice);
             game_object.player_1.sort();
@@ -533,25 +542,25 @@ const gameDOMFunction = (() => {
     const gamePlaying = document.getElementById('game_playing'); //this is the section of the game board
 
     const start_page = () => {
-        intro_fig.forEach(figure => {
-            figure.style.animationPlayState = 'Running';
-        })
-        intro_h1.forEach(h1 => {
-           h1.style.animationPlayState = 'Running';
-        })
-        header.style.animationPlayState = 'Running';
-        intro_section.style.animationPlayState = 'Running';
+        // intro_fig.forEach(figure => {
+        //     figure.style.animationPlayState = 'Running';
+        // })
+        // intro_h1.forEach(h1 => {
+        //    h1.style.animationPlayState = 'Running';
+        // })
+        // header.style.animationPlayState = 'Running';
+        // intro_section.style.animationPlayState = 'Running';
         input_collection.style.animationPlayState = 'Running';
         document.getElementById('game_settings_section').style.animationPlayState = 'Running';
-        setTimeout(() => {
-            audios[2].play()
-        },10000)
-        setTimeout (() => {
-            audios[3].play()
-        },2500)
-        setTimeout (() => {
-            audios[3].play()
-        },5000)
+        // setTimeout(() => {
+        //     audios[2].play()
+        // },10000)
+        // setTimeout (() => {
+        //     audios[3].play()
+        // },2500)
+        // setTimeout (() => {
+        //     audios[3].play()
+        // },5000)
     }
 
     const click_sound = () => {
