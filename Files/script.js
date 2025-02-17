@@ -149,7 +149,7 @@ const gamePlayingFunction =(() => {
         }
 
         if (!comp_plays && taken_keys.length < 8 && !user2_plays) {
-            document.getElementById('player_playing').innerText = `Player: ${game_object.player_2_name} (${game_object.player_2_symbol})`; 
+            document.getElementById('player_playing').innerText = `${game_object.player_2_name}'s turn (${game_object.player_2_symbol})`; 
             user2_plays = true;
             return 0
         }
@@ -172,13 +172,13 @@ const gamePlayingFunction =(() => {
                     last_play_possibility_or_draw();
                 }
                 user2_plays = false;
-                document.getElementById('player_playing').innerText = `Player: ${game_object.player_1_name} (${game_object.player_1_symbol})`;
+                document.getElementById('player_playing').innerText = `${game_object.player_1_name}'s turn (${game_object.player_1_symbol})`;
                 return 0
             }                
 
         //when computer is playing condition
         if (comp_plays && user1_choice_check && taken_keys.length < 8 && user_choice) {
-            document.getElementById('player_playing').innerText = `Player: ${game_object.player_2_name} (${game_object.player_2_symbol})`;
+            document.getElementById('player_playing').innerText = `${game_object.player_2_name}'s turn (${game_object.player_2_symbol})`;
             document.getElementById('game_board').style.pointerEvents = 'none';
             const comp_choice = comp_choice_fn();
             taken_keys.push(comp_choice);
@@ -567,6 +567,10 @@ const gameDOMFunction = (() => {
         intro_section.style.animationPlayState = 'Running';
         input_collection.style.animationPlayState = 'Running';
         document.getElementById('game_settings_section').style.animationPlayState = 'Running';
+        audios[0].play();
+        setTimeout(() => {
+            audios[1].play()
+        },17000)
         setTimeout(() => {
             audios[2].play()
         },10000)
@@ -578,9 +582,6 @@ const gameDOMFunction = (() => {
         },5000)
     }
 
-    const click_sound = () => {
-        audios[0].play();
-    } 
     const game_music = (state = true) => {
         if (state) {
             audios[1].play();
@@ -812,7 +813,7 @@ const gameDOMFunction = (() => {
         document.getElementById('secondUserName').value = '';
     }
 
-    return {start_page,click_sound,game_music,create_game_board,navbarShow,navbarHide,game_playing_board,input_collection_fn,game_control_btns_parent,back_to_hint_or_to_game,user_inputs_form_collection}
+    return {start_page,create_game_board,navbarShow,navbarHide,game_playing_board,input_collection_fn,game_control_btns_parent,back_to_hint_or_to_game,user_inputs_form_collection}
 })()
 
 
@@ -821,14 +822,9 @@ gameDOMFunction.create_game_board();
 //Global Events
 //When the game starts
 document.getElementById('start_page_btn').addEventListener('mousedown',() => {
-    gameDOMFunction.click_sound();
     document.getElementById('start_page_btn').style.display = 'none';
     gameDOMFunction.start_page();
 
-})
-document.getElementById('input_collection').addEventListener('mousedown',  gameDOMFunction.game_music);
-document.getElementById('input_collection').addEventListener('mouseup', () => {
-    document.getElementById('input_collection').removeEventListener('mousedown',  gameDOMFunction.game_music);
 })
 
 //Anonymous fn for adding the second player

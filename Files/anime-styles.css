@@ -29,7 +29,7 @@
         }
         h1:last-of-type::before {
             animation: last-h1-before 700ms 3;
-        }
+        } 
     }
 }
 

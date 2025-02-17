@@ -30,7 +30,6 @@ body {
     background-size: 100% 100%;
     background-attachment: fixed;
     overflow-y: auto;
-
 }
 
 main {
@@ -130,6 +129,7 @@ button:active,.button_inputs:active,select:hover,.game-level:hover {
 
 #input_collection {
     form {
+        margin-top: 1.5rem;
         display:flex;
         flex-direction: column;
         align-items: center;
@@ -146,6 +146,12 @@ button:active,.button_inputs:active,select:hover,.game-level:hover {
                 font-size: 1.2rem;
                 text-align: center;
             }
+        }
+        div {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: .5rem;
         }
     }
 }
@@ -369,7 +375,7 @@ button:active,.button_inputs:active,select:hover,.game-level:hover {
 
 #show-game-round-and-player,#level_playing {
     font-family: myFontLunar,Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 2rem;
+    font-size: 1.7rem;
 }
 
 #select-level-form {
@@ -389,7 +395,7 @@ button:active,.button_inputs:active,select:hover,.game-level:hover {
     margin-top: 2rem;
     padding: 1rem 0;
     font-family: myFontLunar,Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     background-color: var(--secondary-color);
     a {
         color: var(--primary-color);
@@ -397,20 +403,19 @@ button:active,.button_inputs:active,select:hover,.game-level:hover {
     }
 }
 
-@media (width < 675px) {
-    html {
-        font-size: 13px;
+@media (width < 635px) {
+    #players {
+        * {
+            font-size: 1.2rem !important; 
+        }
+    }
+    header {
+        font-size: 2rem !important;  
+        line-height: 1rem !important;
+        padding: .5rem !important;
     }
 }
 @media (width < 530px) {
-    html {
-        font-size: 10px;
-    }
-    #game_board {
-        .outer_shell {
-            width:25rem !important;
-        }
-    }
     #game_control_btn {
         display: flex;
         flex-direction: column;
@@ -422,13 +427,36 @@ button:active,.button_inputs:active,select:hover,.game-level:hover {
     }
 }
 
-@media (width < 375px) {
+@media (width < 480px) {
     #players {
-        p {
-            font-size: 1.5rem !important;
+        span {
+            padding: .3rem .2rem !important;
+        }
+        * {
+            font-size: 1rem !important; 
         }
     }
     header {
-        font-size: 1.5rem !important;
+        font-size: 1rem !important;
+    }
+    #game_board {
+        .outer_shell {
+            width:21.5rem !important;
+        }
+        .inner_shell {
+            width: 7rem !important;
+            height: 7rem !important;
+        }
+    }
+    #game_settings {
+        font-size: 1.8rem !important;
+        padding: 1rem !important;
+    } 
+}
+
+
+@media (width < 375px) {
+    html {
+        font-size: 14px;
     }
 }
