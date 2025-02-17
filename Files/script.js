@@ -56,7 +56,7 @@ const gamePlayingFunction =(() => {
         document.getElementById('player_2_name').innerText = `Player: ${game_object.player_2_name}`;
         //Information about the rounds and the player playing
         document.getElementById('game_round').innerText = `Round: ${game_object.game_rounds}`;
-        document.getElementById('player_playing').innerText = `Player: ${game_object.player_1_name} (${game_object.player_1_symbol})`;
+        document.getElementById('player_playing').innerText = `${game_object.player_1_name}'s turn (${game_object.player_1_symbol})`;
 
         dom_game_board = document.getElementById('game_board').querySelectorAll('.inner_shell');
         spans = document.getElementById('game_board').querySelectorAll('span');
