@@ -102,7 +102,7 @@ const gamePlayingFunction =(() => {
             user1_choice_check = not_repeat_taken_keys(user_choice);
             if (user1_choice_check && user_choice) {
                 taken_keys.push(user_choice);
-                user_win =  game_record_fn(user_choice,game_object.player_1_name);
+                user_win = game_record_fn(user_choice,game_object.player_1_name);
             }
             //to check if the user has made a win
             if (game_object.player_1.length >= 3) {
@@ -374,10 +374,12 @@ const gamePlayingFunction =(() => {
             suceed_index_array = [];
             for (j = 0; j < game_object.game_patterns.length; j++) {
                 if (failed_index) {
-                    check_index1_new_array = failed_index === game_object.game_patterns[i][0] ? false:true;
+                    check_index1_new_array = (failed_index === game_object.game_patterns[i][0]) ? false:true;
                     if (!check_index1_new_array) {
-                        for (let k = 1; k <= failed_at_index; k++) {
+                        for (let k = 1; k < failed_at_index; k++) {
                             check_index1_new_array = failed_index_array[k] === game_object.game_patterns[i][k] ? false:true;
+                            if(check_index1_new_array) 
+                               break
                         }
                     }
                 }
@@ -423,18 +425,6 @@ const gamePlayingFunction =(() => {
         for (let j = 0; j<suceed_index_array.length; j++) {
             dom_game_board[suceed_index_array[j]].setAttribute('class','inner_shell show won');
         }
-    }
-
-    const user2_choice_function = () => {
-        let user2_choice;
-        user2_choice = window.prompt(`Already taken: ${taken_keys}, User2 enter your choice: `);
-        user2_choice = parseInt(user2_choice);
-        const choice_check = not_repeat_taken_keys(user2_choice);
-        if (!choice_check) {
-            window.alert ('Already Taken key played!');
-            user2_choice = user2_choice_function();
-        }
-        return user2_choice
     }
 
     const comp_choice_fn = () => {
@@ -542,25 +532,25 @@ const gameDOMFunction = (() => {
     const gamePlaying = document.getElementById('game_playing'); //this is the section of the game board
 
     const start_page = () => {
-        // intro_fig.forEach(figure => {
-        //     figure.style.animationPlayState = 'Running';
-        // })
-        // intro_h1.forEach(h1 => {
-        //    h1.style.animationPlayState = 'Running';
-        // })
-        // header.style.animationPlayState = 'Running';
-        // intro_section.style.animationPlayState = 'Running';
+        intro_fig.forEach(figure => {
+            figure.style.animationPlayState = 'Running';
+        })
+        intro_h1.forEach(h1 => {
+           h1.style.animationPlayState = 'Running';
+        })
+        header.style.animationPlayState = 'Running';
+        intro_section.style.animationPlayState = 'Running';
         input_collection.style.animationPlayState = 'Running';
         document.getElementById('game_settings_section').style.animationPlayState = 'Running';
-        // setTimeout(() => {
-        //     audios[2].play()
-        // },10000)
-        // setTimeout (() => {
-        //     audios[3].play()
-        // },2500)
-        // setTimeout (() => {
-        //     audios[3].play()
-        // },5000)
+        setTimeout(() => {
+            audios[2].play()
+        },10000)
+        setTimeout (() => {
+            audios[3].play()
+        },2500)
+        setTimeout (() => {
+            audios[3].play()
+        },5000)
     }
 
     const click_sound = () => {

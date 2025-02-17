@@ -21,7 +21,6 @@
 @font-face {
     font-family: 'myFontCyber';
     src: url(Cyber\ Monday.otf);
-
 }
 
 body {
@@ -70,7 +69,7 @@ button:active,.button_inputs:active,select:hover,#level-submit-button:hover {
     header {
        width: max-content;
        padding: 2rem;
-       font-family: myFontLunar;
+       font-family: myFontLunar,Verdana, Geneva, Tahoma, sans-serif;
        font-size: 2.5rem;
        line-height: 5rem !important;
        position: absolute;
@@ -108,7 +107,7 @@ button:active,.button_inputs:active,select:hover,#level-submit-button:hover {
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        font-family: myFontMomentz;
+        font-family: myFontMomentz,Verdana, Geneva, Tahoma, sans-serif;
         font-size: 2.5rem;
         background-color: transparent;
         color: rgb(172, 4, 4);
@@ -153,7 +152,7 @@ button:active,.button_inputs:active,select:hover,#level-submit-button:hover {
 
 #hints_to_win_parent {
     background-color: var(--primary-color);
-    font-family: myFontCyber;
+    font-family: myFontCyber,Verdana, Geneva, Tahoma, sans-serif;
     h1 {
         text-align: center;
         margin: 2rem 0;
@@ -187,7 +186,7 @@ button:active,.button_inputs:active,select:hover,#level-submit-button:hover {
     background-color: var(--primary-color);
     line-height: 2rem;
     letter-spacing: .1rem;
-    font-family: myFontCyber;
+    font-family: myFontCyber,Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
     text-align: center;
     padding: 1rem 0 2rem 0;
@@ -202,7 +201,7 @@ button:active,.button_inputs:active,select:hover,#level-submit-button:hover {
     flex-direction: column;
     gap: 2rem;
     h1 {
-        font-family: myFontLunar;
+        font-family: myFontLunar,Verdana, Geneva, Tahoma, sans-serif;
         text-align: center;
         font-size: 3rem;
     }
@@ -220,7 +219,7 @@ button:active,.button_inputs:active,select:hover,#level-submit-button:hover {
         display: flex;
         align-items: center;
         p {
-            font-family: myFontLunar !important;
+            font-family: myFontLunar,Verdana, Geneva, Tahoma, sans-serif !important;
             font-weight:900;
             font-size: 1.8rem;
             display: flex;
@@ -251,7 +250,7 @@ button:active,.button_inputs:active,select:hover,#level-submit-button:hover {
             height: 8rem;
             width: 8rem;
             border: .5px solid;
-            font-family: myFontLunar !important;
+            font-family: myFontLunar,Verdana, Geneva, Tahoma, sans-serif !important;
             font-weight: bold;
             display: flex;
             flex-direction: column;
@@ -300,7 +299,7 @@ button:active,.button_inputs:active,select:hover,#level-submit-button:hover {
     transform: translateX(-50%);
     p {
         text-align: center;
-        font-family: myFontMomentz;
+        font-family: myFontMomentz,Verdana, Geneva, Tahoma, sans-serif;
         font-size: 3rem;
     }
     div {
@@ -369,14 +368,14 @@ button:active,.button_inputs:active,select:hover,#level-submit-button:hover {
 }
 
 #show-game-round-and-player {
-    font-family: myFontLunar;
+    font-family: myFontLunar,Verdana, Geneva, Tahoma, sans-serif;
     font-size: 2rem;
 }
 
 #anchor_container {
     margin-top: 2rem;
     padding: 1rem 0;
-    font-family: myFontLunar;
+    font-family: myFontLunar,Verdana, Geneva, Tahoma, sans-serif;
     font-size: 1.5rem;
     background-color: var(--secondary-color);
     a {
@@ -420,11 +419,3 @@ button:active,.button_inputs:active,select:hover,#level-submit-button:hover {
         font-size: 1.5rem !important;
     }
 }
-/*
-@media (aspect-ratio > 0.4) {
-    
-    #game_settings_section {
-        top:15% !important;
-    }   
-}*/
-

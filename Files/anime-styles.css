@@ -32,7 +32,7 @@
         }
     }
 }
-/*
+
 #input_collection {
     animation: input-collection 18000ms 1 forwards paused;
 }
@@ -69,46 +69,6 @@
         opacity: 1; 
     }
 }
-*/
-
-
-#input_collection {
-    animation: input-collection 1000ms 1 forwards paused;
-}
-
-@keyframes input-collection {
-    0%,90% {
-        display: none;
-        opacity: 0;
-    }
-    90%,91% {
-        display: none;
-        opacity: 0;
-    }
-    99%,100% {
-        display: block;
-        opacity: 1; 
-    }
-}
-
-#game_settings_section {
-    animation: game_settings_section 1000ms 1 forwards paused;
-}
-@keyframes game_settings_section {
-    0%,90% {
-        display: none;
-        opacity: 0;
-    }
-    90%,91% {
-        display: none;
-        opacity: 0;
-    }
-    99%,100% {
-        display: block;
-        opacity: 1; 
-    }
-}
-
 
 @keyframes intro {
     0%,95% {
