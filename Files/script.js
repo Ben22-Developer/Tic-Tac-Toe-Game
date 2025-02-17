@@ -77,15 +77,39 @@ const gamePlayingFunction =(() => {
     }
 
     //This function executes when user is playing with computer and he needs to change the hardness level of the game
-    const game_change_level_fn = e => {
-        e.preventDefault();
-        if (document.getElementById('select-change-level').value !== 'none') {
-            game_set_fn('','',document.getElementById('select-change-level').value);
-            document.getElementById('level_playing').innerText = `Now Playing Level (${document.getElementById('select-change-level').value})`;
+    const game_change_level_fn = () => {
+        document.addEventListener('mousedown',hide_game_level_btns);
+        const game_level_btns = document.querySelectorAll('.game-level');
+        game_level_btns.forEach(button => {
+            button.removeAttribute('class','hide');
+            button.setAttribute('class','game-level');
+        })
+        game_level_btns.forEach(button => {
+            button.addEventListener('mousedown',e => {
+            e.preventDefault();
+            game_set_fn('','',e.target.value);
+            document.getElementById('level_playing').innerText = `You are playing the (${e.target.value}) Level`;
             game_object.players_score = [0,0];
             game_object.game_rounds = 1;
             player_with_trophy(-1);
             reset_game_board();
+            game_level_btns.forEach(button => {
+                button.setAttribute('class','game-level hide');
+            })
+            })
+        })
+    }
+
+    const hide_game_level_btns = e => {
+        if (!e.target.matches('#form-of-game-level')) {
+            console.log('in if')
+            document.querySelectorAll('.game-level').forEach(button => {
+                button.setAttribute('class','game-level hide');
+            })
+            document.removeEventListener('mousedown',hide_game_level_btns);
+        }
+        else {
+            console.log('else')
         }
     }
 
@@ -514,7 +538,7 @@ const gamePlayingFunction =(() => {
 })()
 
 //events firing directly to the gamePlayingFunction
-document.getElementById('level-submit-button').addEventListener('click',gamePlayingFunction.game_change_level_fn);
+document.getElementById('select-change-level').addEventListener('click',gamePlayingFunction.game_change_level_fn);
 document.getElementById('game_board').addEventListener('mouseover',gamePlayingFunction.user_choice_fn);
 document.getElementById('continue_or_stop_rounds').addEventListener('mouseover',gamePlayingFunction.continue_or_stop_rounds_fn)
 
@@ -533,25 +557,25 @@ const gameDOMFunction = (() => {
     const gamePlaying = document.getElementById('game_playing'); //this is the section of the game board
 
     const start_page = () => {
-        intro_fig.forEach(figure => {
-            figure.style.animationPlayState = 'Running';
-        })
-        intro_h1.forEach(h1 => {
-           h1.style.animationPlayState = 'Running';
-        })
-        header.style.animationPlayState = 'Running';
-        intro_section.style.animationPlayState = 'Running';
+        // intro_fig.forEach(figure => {
+        //     figure.style.animationPlayState = 'Running';
+        // })
+        // intro_h1.forEach(h1 => {
+        //    h1.style.animationPlayState = 'Running';
+        // })
+        //header.style.animationPlayState = 'Running';
+       // intro_section.style.animationPlayState = 'Running';
         input_collection.style.animationPlayState = 'Running';
         document.getElementById('game_settings_section').style.animationPlayState = 'Running';
-        setTimeout(() => {
-            audios[2].play()
-        },10000)
-        setTimeout (() => {
-            audios[3].play()
-        },2500)
-        setTimeout (() => {
-            audios[3].play()
-        },5000)
+        // setTimeout(() => {
+        //     audios[2].play()
+        // },10000)
+        // setTimeout (() => {
+        //     audios[3].play()
+        // },2500)
+        // setTimeout (() => {
+        //     audios[3].play()
+        // },5000)
     }
 
     const click_sound = () => {
@@ -625,8 +649,8 @@ const gameDOMFunction = (() => {
         }
         else {
             document.getElementById('select-level-form').removeAttribute('class','none');
-            document.getElementById('select-change-level').value = document.getElementById('level_select').value;
-            document.getElementById('level_playing').innerText = `Now Playing Level (${document.getElementById('level_select').value})`;
+            //document.getElementById('select-change-level').value = document.getElementById('level_select').value;
+            document.getElementById('level_playing').innerText = `You are playing the (${document.getElementById('level_select').value}) Level`;
         }
     }
 

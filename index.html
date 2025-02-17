@@ -74,15 +74,23 @@
                 <p><span id="player_1_name"></span><span id="player_1_points">Rounds: 0</span><span id="player_1_symbol"></span><span class="trophy">Champion</span></p>
                 <p><span id="player_2_name"></span><span id="player_2_points">Rounds: 0</span><span id="player_2_symbol"></span><span class="trophy">Champion</span></p>
             </div>
-            <form style="display: flex; flex-direction: column; align-items: center; gap:1rem;" id="select-level-form">
-                <select id="select-change-level">
+           <!-- <form style="display: flex; flex-direction: column; align-items: center; gap:1rem;" id="select-level-form"> --->
+                <!--<select id="select-change-level">
                     <option value="Hard">Hard</option>
                     <option value="Medium">Medium</option>
                     <option value="Easy">Easy</option>
-                </select>
-                <input type="submit" value="Click Me To Apply The Changed Level" id="level-submit-button">
+                </select> -->
+                <div id="select-level-form">
+                    <button id="select-change-level">Select A Game Level</button>
+                    <form id="form-of-game-level">
+                        <input type="submit" value="Hard" class="game-level hide">
+                        <input type="submit" value="Medium" class="game-level hide">
+                        <input type="submit" value="Easy" class="game-level hide">
+                    </form>
+                </div>
+                <!--<input type="submit" value="Click Me To Apply The Changed Level" id="level-submit-button">-->
                 <p id="level_playing"></p>
-            </form>
+            <!--</form> -->
             <p id="show-game-round-and-player"><span id="game_round"></span><br><span id="player_playing"></span></p>
             <div id="game_board"></div>
             <div id="game_control_btn">
