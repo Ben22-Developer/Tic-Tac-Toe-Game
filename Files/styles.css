@@ -367,7 +367,7 @@ button:active,.button_inputs:active,select:hover,#level-submit-button:hover {
     }
 }
 
-#show-game-round-and-player {
+#show-game-round-and-player,#level_playing {
     font-family: myFontLunar,Verdana, Geneva, Tahoma, sans-serif;
     font-size: 2rem;
 }

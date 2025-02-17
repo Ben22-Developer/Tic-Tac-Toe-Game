@@ -81,6 +81,7 @@ const gamePlayingFunction =(() => {
         e.preventDefault();
         if (document.getElementById('select-change-level').value !== 'none') {
             game_set_fn('','',document.getElementById('select-change-level').value);
+            document.getElementById('level_playing').innerText = `Now Playing Level (${document.getElementById('select-change-level').value})`;
             game_object.players_score = [0,0];
             game_object.game_rounds = 1;
             player_with_trophy(-1);
@@ -620,10 +621,12 @@ const gameDOMFunction = (() => {
         //display the select levels form when playing with computer to allow user to easily change the game level hardness
         if (game_object.player_2_name !== 'Robot') {
          document.getElementById('select-level-form').setAttribute('class','none');
+         document.getElementById('level_playing').setAttribute('class','none');
         }
         else {
             document.getElementById('select-level-form').removeAttribute('class','none');
             document.getElementById('select-change-level').value = document.getElementById('level_select').value;
+            document.getElementById('level_playing').innerText = `Now Playing Level (${document.getElementById('level_select').value})`;
         }
     }
 
