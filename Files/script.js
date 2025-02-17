@@ -557,25 +557,25 @@ const gameDOMFunction = (() => {
     const gamePlaying = document.getElementById('game_playing'); //this is the section of the game board
 
     const start_page = () => {
-        // intro_fig.forEach(figure => {
-        //     figure.style.animationPlayState = 'Running';
-        // })
-        // intro_h1.forEach(h1 => {
-        //    h1.style.animationPlayState = 'Running';
-        // })
-        //header.style.animationPlayState = 'Running';
-       // intro_section.style.animationPlayState = 'Running';
+        intro_fig.forEach(figure => {
+            figure.style.animationPlayState = 'Running';
+        })
+        intro_h1.forEach(h1 => {
+           h1.style.animationPlayState = 'Running';
+        })
+        header.style.animationPlayState = 'Running';
+        intro_section.style.animationPlayState = 'Running';
         input_collection.style.animationPlayState = 'Running';
         document.getElementById('game_settings_section').style.animationPlayState = 'Running';
-        // setTimeout(() => {
-        //     audios[2].play()
-        // },10000)
-        // setTimeout (() => {
-        //     audios[3].play()
-        // },2500)
-        // setTimeout (() => {
-        //     audios[3].play()
-        // },5000)
+        setTimeout(() => {
+            audios[2].play()
+        },10000)
+        setTimeout (() => {
+            audios[3].play()
+        },2500)
+        setTimeout (() => {
+            audios[3].play()
+        },5000)
     }
 
     const click_sound = () => {
@@ -649,7 +649,6 @@ const gameDOMFunction = (() => {
         }
         else {
             document.getElementById('select-level-form').removeAttribute('class','none');
-            //document.getElementById('select-change-level').value = document.getElementById('level_select').value;
             document.getElementById('level_playing').innerText = `You are playing the (${document.getElementById('level_select').value}) Level`;
         }
     }

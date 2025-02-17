@@ -294,7 +294,7 @@ button:active,.button_inputs:active,select:hover,.game-level:hover {
     flex-direction: column;
     gap:5rem;
     position: absolute;
-    top: 5%;
+    top: 1%;
     left: 50%;
     transform: translateX(-50%);
     p {
