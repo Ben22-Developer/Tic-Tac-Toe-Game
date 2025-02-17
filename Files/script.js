@@ -14,9 +14,10 @@ const gamePlayingFunction =(() => {
     const player_symblos = ['X','O'];
     let dom_game_board,spans;
     let taken_keys = [];
-    let comp_plays,user2_plays,easy,medium,hard;
+    let comp_plays,comp_plays_first,user2_plays,easy,medium,hard;
     comp_plays = false;
     user2_plays = false;
+    comp_plays_first = false;
     //setting users names and the game level
     const game_set_fn = (firstPlayerName,secondPlayerName,gameLevel) => {      
         if (!game_object.player_1_name) {
@@ -114,10 +115,10 @@ const gamePlayingFunction =(() => {
     }
 
     //This function controls 80% of this game flow program
-    const game_controller_fn = (user_choice) => {
+    const game_controller_fn = (user_choice = 5) => {
 
         //Global Variables in game_controller_fn
-        let user1_choice_check;
+        let user1_choice_check,last_comp_possibility;
         user1_choice_check = true;
 
         //when user 1 is playing condition
@@ -141,9 +142,16 @@ const gamePlayingFunction =(() => {
                     return 0
                 }
             }
+            if (taken_keys.length === 8) {
+                last_comp_possibility = last_play_possibility_or_draw();                
+                if (!last_comp_possibility) {
+                    document.getElementById('game_board').style.pointerEvents = 'all';
+                    return 0
+                }
+            }
             document.getElementById('game_board').style.pointerEvents = 'all';
         }
-        else if (!taken_keys.length && !user2_plays) {
+        else if (!taken_keys.length && !user2_plays && !comp_plays_first) {
             game_record_fn(user_choice,game_object.player_1_name);
             taken_keys.push(user_choice);
         }
@@ -182,6 +190,7 @@ const gamePlayingFunction =(() => {
             document.getElementById('game_board').style.pointerEvents = 'none';
             const comp_choice = comp_choice_fn();
             taken_keys.push(comp_choice);
+
             setTimeout(() => {
                 const comp_win = game_record_fn(comp_choice,game_object.player_2_name);
                 //to check if the computer has made a win
@@ -189,9 +198,8 @@ const gamePlayingFunction =(() => {
                     if (comp_win) {
                         document.querySelector('#game_board').setAttribute('class','game_board_off');
                         setTimeout(()=> {
-                            game_end(game_object.player_2_name);
-                        
-                          },1500)
+                            game_end(game_object.player_2_name);    
+                            },1500)
                     }
                 }
                 document.getElementById('game_board').style.pointerEvents = 'all';   
@@ -204,18 +212,32 @@ const gamePlayingFunction =(() => {
         }
 
         //last play for the user 
-        else if (user1_choice_check && taken_keys.length === 8 && user_choice) {
+        else if (user1_choice_check && taken_keys.length === 8 && user_choice && !comp_plays_first) {
             const user_win = game_record_fn(user_choice,game_object.player_1_name);
             //to check if the user has made a win
             if (user_win) {
-                document.querySelector('#game_board').setAttribute('class','game_board_off');
-            
+                document.querySelector('#game_board').setAttribute('class','game_board_off');            
                 setTimeout(() => {
-                    document.querySelector('#game_board').setAttribute('class','game_board_off');
+                    //document.querySelector('#game_board').setAttribute('class','game_board_off');
                     game_end(game_object.player_1_name);
                 },1500)
             }
-        }    
+        }
+        
+        //last play for the computer
+        else if (user1_choice_check && taken_keys.length === 8 && user_choice && comp_plays_first) {
+            document.getElementById('player_playing').innerText = `${game_object.player_2_name}'s turn (${game_object.player_2_symbol})`;
+            document.getElementById('game_board').style.pointerEvents = 'none';
+            setTimeout(() => {
+                const comp_win = game_record_fn(last_comp_possibility,game_object.player_2_name);
+                //to check if the computer has made a win
+                if (comp_win) {
+                    document.querySelector('#game_board').setAttribute('class','game_board_off');
+                    game_end(game_object.player_2_name);        
+                }
+                document.getElementById('game_board').style.pointerEvents = 'all';   
+            },1500)
+        }
         return 0
     }
 
@@ -227,6 +249,10 @@ const gamePlayingFunction =(() => {
             setTimeout (() => {
                 game_end();
             },1500)
+            return false
+        }
+        else {
+            return possibility
         }
     }
 
@@ -358,6 +384,8 @@ const gamePlayingFunction =(() => {
 
     //game restarting from scratch
     const game_strict_restart_fn = () => {   
+        comp_plays = false;
+        user2_plays = false;
         gameDOMFunction.input_collection_fn(false);
         gameDOMFunction.game_playing_board();
         game_restart(true);
@@ -366,8 +394,6 @@ const gamePlayingFunction =(() => {
         document.querySelector('#game_board').removeAttribute('class','game_board_off');
         document.querySelector('#navbar').removeAttribute('class','no_select');
         document.getElementById('game_settings').setAttribute('class','hide-nav');
-        comp_plays = false;
-        user2_plays = false;
     }
 
     const invoke_game_reset_board = () => {
@@ -386,6 +412,17 @@ const gamePlayingFunction =(() => {
         //To avoid  unnecessary calls when we have already triggered game_restart()
         if (!bool) {
             game_restart();
+        }
+        if (comp_plays) {
+            if (comp_plays_first) {
+                comp_plays_first = false
+                document.getElementById('player_playing').innerText = `${game_object.player_1_name}'s turn (${game_object.player_1_symbol})`;
+            }
+            else {
+                comp_plays_first = true
+                document.getElementById('player_playing').innerText = `${game_object.player_2_name}'s turn (${game_object.player_2_symbol})`;
+                game_controller_fn ();
+            }
         }
     }
 
@@ -539,7 +576,7 @@ const gamePlayingFunction =(() => {
 
 //events firing directly to the gamePlayingFunction
 document.getElementById('select-change-level').addEventListener('click',gamePlayingFunction.game_change_level_fn);
-document.getElementById('game_board').addEventListener('mouseover',gamePlayingFunction.user_choice_fn);
+document.getElementById('game_board').addEventListener('mousemove',gamePlayingFunction.user_choice_fn);
 document.getElementById('continue_or_stop_rounds').addEventListener('mouseover',gamePlayingFunction.continue_or_stop_rounds_fn)
 
 

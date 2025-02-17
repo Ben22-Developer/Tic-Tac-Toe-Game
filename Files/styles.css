@@ -219,7 +219,7 @@ button:active,.button_inputs:active,select:hover,.game-level:hover {
         color: rgb(203, 2, 2);
        }
     #players {
-        border:.3rem solid var(--secondary-color);
+        border:.1rem solid var(--secondary-color);
         width: max-content;
         margin: auto;
         display: flex;
