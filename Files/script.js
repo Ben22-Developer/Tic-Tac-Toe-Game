@@ -90,10 +90,10 @@ const gamePlayingFunction =(() => {
             e.preventDefault();
             game_set_fn('','',e.target.value);
             document.getElementById('level_playing').innerText = `You are playing the (${e.target.value}) Level`;
-            game_object.players_score = [0,0];
-            game_object.game_rounds = 1;
-            player_with_trophy(-1);
+            comp_plays = false;
             reset_game_board();
+            comp_plays = true;
+            comp_plays_first = false;
             game_level_btns.forEach(button => {
                 button.setAttribute('class','game-level hide');
             })
@@ -103,14 +103,10 @@ const gamePlayingFunction =(() => {
 
     const hide_game_level_btns = e => {
         if (!e.target.matches('#form-of-game-level')) {
-            console.log('in if')
             document.querySelectorAll('.game-level').forEach(button => {
                 button.setAttribute('class','game-level hide');
             })
             document.removeEventListener('mousedown',hide_game_level_btns);
-        }
-        else {
-            console.log('else')
         }
     }
 
@@ -367,6 +363,7 @@ const gamePlayingFunction =(() => {
     //game restart functions
     const game_restart = (scratch_start = false) => {
         if (scratch_start) {
+            comp_plays_first = false;
             game_object.player_1_name = '';
             game_object.player_2_name = '';
             game_object.players_score = [0,0];
@@ -687,6 +684,7 @@ const gameDOMFunction = (() => {
         }
         else {
             document.getElementById('select-level-form').removeAttribute('class','none');
+            document.getElementById('level_playing').removeAttribute('class','none');
             document.getElementById('level_playing').innerText = `You are playing the (${document.getElementById('level_select').value}) Level`;
         }
     }
@@ -870,10 +868,14 @@ document.getElementById('partner_btn').addEventListener('click', e => {
     if (document.getElementById('player_2').matches('.hide')) {
         document.getElementById('player_2').removeAttribute('class','hide');
         document.getElementById('level_select').setAttribute('class','none');
+        document.getElementById('play_with_partener_or_comp').setAttribute('class','hide');
+        document.getElementById('partner_btn').innerText = 'With Computer';
     }
     else {
         document.getElementById('player_2').setAttribute('class','hide');
         document.getElementById('level_select').removeAttribute('class','none');
+        document.getElementById('play_with_partener_or_comp').removeAttribute('class','hide');
+        document.getElementById('partner_btn').innerText = 'With Partener'   
     }
 })
 
