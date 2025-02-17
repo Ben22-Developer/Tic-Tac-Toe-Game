@@ -199,7 +199,7 @@ const gamePlayingFunction =(() => {
                     }
                 }
                 document.getElementById('game_board').style.pointerEvents = 'all';   
-                document.getElementById('player_playing').innerText = `Player: ${game_object.player_1_name} (${game_object.player_1_symbol})`;
+                document.getElementById('player_playing').innerText = `${game_object.player_1_name}'s turn (${game_object.player_1_symbol})`;
             },1000)
             if (taken_keys.length === 8) {
                 last_play_possibility_or_draw();
@@ -214,7 +214,6 @@ const gamePlayingFunction =(() => {
             if (user_win) {
                 document.querySelector('#game_board').setAttribute('class','game_board_off');            
                 setTimeout(() => {
-                    //document.querySelector('#game_board').setAttribute('class','game_board_off');
                     game_end(game_object.player_1_name);
                 },1500)
             }
