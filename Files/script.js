@@ -59,6 +59,18 @@ const gamePlayingFunction =(() => {
 
         dom_game_board = document.getElementById('game_board').querySelectorAll('.inner_shell');
         spans = document.getElementById('game_board').querySelectorAll('span');
+        document.addEventListener('keyup',user_keyboard_validation);
+    }
+
+    //keyboard support validation
+    const user_keyboard_validation = e => {
+        const isItNum = parseInt(e.key);
+        if (isItNum) {
+            game_controller_fn(isItNum)
+        }
+        if ((e.key === 'Q' || e.key === 'q' ) && e.ctrlKey) {
+            continue_to_play()
+        }
     }
 
     //Functions to help in collection of the user inputs
@@ -378,7 +390,9 @@ const gamePlayingFunction =(() => {
     }
 
     //game restarting from scratch
-    const game_strict_restart_fn = () => {   
+    const game_strict_restart_fn = () => {
+        console.log
+        document.removeEventListener('keyup', user_keyboard_validation);   
         comp_plays = false;
         user2_plays = false;
         gameDOMFunction.input_collection_fn(false);
