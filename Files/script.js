@@ -1,6 +1,5 @@
 const game_object = {
     game_board: [1,2,3,4,5,6,7,8,9],
-    //game_controller: [], //can be deleted
     game_patterns: [[1,2,3],[1,4,7],[1,5,9],[2,5,8],[3,5,7],[3,6,9],[4,5,6],[7,8,9]],
     player_1_name:'',player_2_name:'',player_1_symbol:'',player_2_symbol:'',
     player_1: [],
@@ -139,7 +138,7 @@ const gamePlayingFunction =(() => {
                 }
             }
             if (taken_keys.length === 8) {
-                last_comp_possibility = last_play_possibility_or_draw();                
+                last_comp_possibility = last_play_possibility_or_draw(game_object.player_2);                
                 if (!last_comp_possibility) {
                     document.getElementById('game_board').style.pointerEvents = 'all';
                     return 0
@@ -173,7 +172,7 @@ const gamePlayingFunction =(() => {
                     }
                 }
                 if (taken_keys.length === 8) {
-                    last_play_possibility_or_draw();
+                    last_play_possibility_or_draw(game_object.player_1);
                 }
                 user2_plays = false;
                 document.getElementById('player_playing').innerText = `${game_object.player_1_name}'s turn (${game_object.player_1_symbol})`;
@@ -202,7 +201,7 @@ const gamePlayingFunction =(() => {
                 document.getElementById('player_playing').innerText = `${game_object.player_1_name}'s turn (${game_object.player_1_symbol})`;
             },1000)
             if (taken_keys.length === 8) {
-                last_play_possibility_or_draw();
+                last_play_possibility_or_draw(game_object.player_1);
             }
             return 0
         }
@@ -236,8 +235,8 @@ const gamePlayingFunction =(() => {
         return 0
     }
 
-    const last_play_possibility_or_draw = () => {
-        const possibility = comp_medium_hard_level_fn (game_object.player_1);
+    const last_play_possibility_or_draw = (array_to_check) => {
+        const possibility = comp_medium_hard_level_fn (array_to_check);
         //draw situation
         if (!possibility) {
             document.querySelector('#game_board').setAttribute('class','game_board_off');
