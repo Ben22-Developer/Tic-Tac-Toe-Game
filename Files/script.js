@@ -856,8 +856,6 @@ const gameDOMFunction = (() => {
                 gameDOMFunction.input_collection_fn(false);
                 gameDOMFunction.game_playing_board();
         }
-        document.getElementById('firstUserName').value = '';
-        document.getElementById('secondUserName').value = '';
     }
 
     return {start_page,create_game_board,navbarShow,navbarHide,game_playing_board,input_collection_fn,game_control_btns_parent,back_to_hint_or_to_game,user_inputs_form_collection}
