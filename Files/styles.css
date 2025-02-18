@@ -3,7 +3,7 @@
     padding: 0;
     margin: 0;
 }
-
+ 
 :root {
     --primary-color:rgb(210, 210, 210);
     --secondary-color:darkgreen;
@@ -245,6 +245,7 @@ button:active,.button_inputs:active,select:hover,.game-level:hover {
         flex-wrap: wrap;
         justify-content: center;
         gap:2rem;
+        user-select: none;
         .outer_shell {
             border:3px solid;
             display: flex;
@@ -263,14 +264,9 @@ button:active,.button_inputs:active,select:hover,.game-level:hover {
             align-items: center;
             justify-content: center;
             transition:background-color 1000ms;
-            span {
-                opacity: 0;
-                transition:opacity 1000ms;
-            }
             .show {
-                opacity: 1;
                 font-size: 4rem;
-            }
+            } 
         }
         .inner_shell.show {
             opacity: 1;
