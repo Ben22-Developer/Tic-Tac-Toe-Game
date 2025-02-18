@@ -18,8 +18,8 @@ const gamePlayingFunction =(() => {
     user2_plays = false;
     comp_plays_first = false;
     //setting users names and the game level
-    const game_set_fn = (firstPlayerName,secondPlayerName,gameLevel) => {      
-        if (!game_object.player_1_name) {
+    const game_set_fn = (firstPlayerName,secondPlayerName,gameLevel,start) => {      
+        if (start) {
             game_object.player_1_name = firstPlayerName;
             game_object.player_2_name = secondPlayerName;
             if (game_object.player_2_name === 'Robot') {
@@ -96,7 +96,7 @@ const gamePlayingFunction =(() => {
         game_level_btns.forEach(button => {
             button.addEventListener('mousedown',e => {
             e.preventDefault();
-            game_set_fn('','',e.target.value);
+            game_set_fn('','',e.target.value,false);
             document.getElementById('level_playing').innerText = `You are playing the (${e.target.value}) Level`;
             comp_plays = false;
             reset_game_board();
@@ -390,7 +390,6 @@ const gamePlayingFunction =(() => {
 
     //game restarting from scratch
     const game_strict_restart_fn = () => {
-        console.log
         document.removeEventListener('keyup', user_keyboard_validation);   
         comp_plays = false;
         user2_plays = false;
@@ -854,9 +853,10 @@ const gameDOMFunction = (() => {
             window.alert(`Sorry players can't have a same name #${secondPlayerName}`);
         }    
         if (bool) {
-                gamePlayingFunction.game_set_fn(firstPlayerName,secondPlayerName,gameLevel)
+                gamePlayingFunction.game_set_fn(firstPlayerName,secondPlayerName,gameLevel,true)
                 gameDOMFunction.input_collection_fn(false);
                 gameDOMFunction.game_playing_board();
+                document.getElementById('secondUserName').value = '';
         }
     }
 
