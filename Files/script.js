@@ -535,10 +535,13 @@ const gamePlayingFunction =(() => {
                 }
             }
         }
-        choice = Math.floor(Math.random()*10);
-        choice_check = not_repeat_taken_keys(choice);
-        if (!choice_check) {
-            choice = comp_choice_fn();
+        const array_possibilities = [1,2,3,4,5,6,7,8,9];
+        for (let i = 0; i<array_possibilities.length; i++) {
+            choice = array_possibilities[i];
+            choice_check = not_repeat_taken_keys(choice);
+            if (choice_check) {
+                break
+            }
         }
         return choice
     }
