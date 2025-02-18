@@ -68,9 +68,6 @@ const gamePlayingFunction =(() => {
         if (isItNum) {
             game_controller_fn(isItNum)
         }
-        if ((e.key === 'Q' || e.key === 'q' ) && e.ctrlKey) {
-            continue_to_play()
-        }
     }
 
     //Functions to help in collection of the user inputs
@@ -297,6 +294,7 @@ const gamePlayingFunction =(() => {
     }
 
     const game_end = (who_plays = 'draw') => {
+        document.removeEventListener('keyup',user_keyboard_validation);
         game_restart();
         if (who_plays === game_object.player_1_name) {
             game_object.players_score[0]++;
@@ -336,6 +334,7 @@ const gamePlayingFunction =(() => {
             document.querySelector('#game_board').removeAttribute('class','game_board_off');
             document.querySelector('#navbar').removeAttribute('class','no_select');
             document.querySelector('#round_won').setAttribute('class','round_won_show round_won_hide');
+            document.addEventListener('keyup',user_keyboard_validation);
         }
     }
 
