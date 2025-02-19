@@ -856,7 +856,6 @@ const gameDOMFunction = (() => {
                 gamePlayingFunction.game_set_fn(firstPlayerName,secondPlayerName,gameLevel,true)
                 gameDOMFunction.input_collection_fn(false);
                 gameDOMFunction.game_playing_board();
-                document.getElementById('secondUserName').value = '';
         }
     }
 
@@ -887,6 +886,7 @@ document.getElementById('partner_btn').addEventListener('click', e => {
         document.getElementById('player_2').setAttribute('class','hide');
         document.getElementById('level_select').removeAttribute('class','none');
         document.getElementById('play_with_partener_or_comp').removeAttribute('class','hide');
+        document.getElementById('secondUserName').value = '';
         document.getElementById('partner_btn').innerText = 'With Partener'   
     }
 })
