@@ -308,3 +308,7 @@ document.getElementById('game_control_btn').addEventListener('mouseover',gameDOM
 document.getElementById('back_to_game_btn').addEventListener('mousedown',gameDOMFunction.back_to_hint_or_to_game);
 //The nav bar
 document.getElementById('navbar').addEventListener('mousedown',gameDOMFunction.navbarShow);
+
+window.addEventListener('load',() => {
+    document.getElementById('start_page_btn').classList.toggle('none');
+})
